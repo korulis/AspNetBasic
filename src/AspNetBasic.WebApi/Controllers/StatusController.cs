@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetBasic.WebApi.Controllers
@@ -9,7 +10,7 @@ namespace AspNetBasic.WebApi.Controllers
         [HttpGet("")]
         public ActionResult GetStatus()
         {
-            return Ok("Hello from AspNetBasic!");
+            return Ok($"Hello from AspNetBasic in {Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}!");
         }
     }
 }

@@ -1,9 +1,6 @@
 using System;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Server.HttpSys;
-using Microsoft.VisualBasic;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -21,13 +18,14 @@ namespace AspNetBasic.IntegrationTests
         {
             _logger = logger;
             _testApiFixture = testApiFixture;
+            DotNetEnv.Env.Load(".env");
         }
 
         [Fact]
         public async Task ReturnsFriendlyMessage()
         {
+            _logger.WriteLine(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
             await _testApiFixture.LaunchApi(_logger);
-
             TestUtils.WaitFor(() => IsStatusFriendlyYet().Result, 10_000, "please");
 
             Assert.True(true);

@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace AspNetBasic.WebApi
 {
@@ -13,6 +7,8 @@ namespace AspNetBasic.WebApi
     {
         public static void Main(string[] args)
         {
+            DotNetEnv.Env.Load(".env");
+
             CreateHostBuilder(args).Build().Run();
         }
 
